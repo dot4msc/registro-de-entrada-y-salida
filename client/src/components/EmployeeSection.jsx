@@ -1,6 +1,6 @@
 function EmployeeSection({name}) {
   const onCheckIn = async (name) => {
-    await fetch('http://localhost:3001/api/checkin', {
+    await fetch('https://registro-de-entrada-y-salida-server.onrender.com/api/checkin', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -10,7 +10,7 @@ function EmployeeSection({name}) {
   }
 
   const onCheckOut = async (name) => {
-    await fetch('http://localhost:3001/api/checkout', {
+    await fetch('https://registro-de-entrada-y-salida-server.onrender.com/api/checkout', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
