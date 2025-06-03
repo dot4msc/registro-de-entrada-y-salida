@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const Log = require("../models/Log")
-const { appendToSheets } = require('../controllers/googleSheets')
+const { appendToSheets } = require("../utils/googleSheets")
 
 router.post('/checkin', async (req, res) => {
   const {name} = req.body
@@ -14,7 +14,7 @@ router.post('/checkin', async (req, res) => {
     res.send({success: true})
   }
   catch(err) {
-    res.status(500).send.send({error: 'Failed to save log or sync'})
+    res.status(500).send({error: 'Failed to save log or sync'})
   }
 
 })
@@ -32,8 +32,7 @@ router.post('/checkout', async (req, res) => {
     res.send({success: true})
   }
   catch(err) {
-    res.status(500).send.send({error: 'Failed to save log or sync'})
+    res.status(500).send({error: 'Failed to save log or sync'})
   }
 })
-
 module.exports = router
