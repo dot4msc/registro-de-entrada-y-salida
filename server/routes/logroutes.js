@@ -40,7 +40,6 @@ router.post('/checkout', async (req, res) => {
   })
 
   const log = new Log({name, action: "salida", date, timestamp})
-  await log.save()
   res.send({success: true})
 
   try {
