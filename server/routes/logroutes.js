@@ -5,8 +5,16 @@ const { appendToSheets } = require("../utils/googleSheets")
 
 router.post('/checkin', async (req, res) => {
   const {name} = req.body
-  const date = new Date().toISOString().split('T')[0]
-  const log = new Log({name, action: "entrada", date})
+  const now = new Date();
+
+  const date = now.toISOString().split('T')[0]
+  const timestamp = now.toLocaleTimeString('es-MX', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: "America/Mexico_City"
+  })
+  const log = new Log({name, action: "entrada", date, timestamp})
 
   try {
     await log.save()
@@ -21,8 +29,17 @@ router.post('/checkin', async (req, res) => {
 
 router.post('/checkout', async (req, res) => {
   const {name} = req.body
-  const date = new Date().toISOString().split('T')[0]
-  const log = new Log({name, action: "salida", date})
+  const now = new Date();
+
+  const date = now.toISOString().split('T')[0]
+  const timestamp = now.toLocaleTimeString('es-MX', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: "America/Mexico_City"
+  })
+
+  const log = new Log({name, action: "salida", date, timestamp})
   await log.save()
   res.send({success: true})
 
